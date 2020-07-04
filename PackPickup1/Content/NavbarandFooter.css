@@ -1,0 +1,82 @@
+﻿.body1 {
+    height: 100%;
+    width: 100%;
+    font-family: 'Poppins',sans-serif;
+    color: #ffffff;
+    background-color: #4F4F4F;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+}
+
+.jumbotron {
+    background-color: #E0E0E0;
+    margin:0;
+}
+.jumbotron img {
+        padding-left:1rem;
+ 
+}
+.jumbotron p {
+        font-size: 25px;
+        margin: 20px 30px 0 10px;
+}
+.jumbotron button {
+        width: 150px;
+        margin: 20px 40px 0 10px;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
+        border-radius: 10px;
+        border:groove;
+        
+}
+.btn-light {
+    width: 200px;
+    height:200px;
+    margin: 20px 10px 0 10px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+    border-radius: 10px;
+    border:2px solid;
+}
+
+hr .my-4 {
+    border-top: 1px solid #d5d5d5;
+    width: 100%;
+    margin-top: .8em;
+    margin-bottom: 1rem;
+}
+
+.bg-light-100 {
+    padding-bottom:2rem;
+}
+@media (max-width: 786px) {
+
+       
+}
+@media (max-width: 576px){
+
+
+    /* Set padding to keep content from hitting the edges */
+.body-content {
+        padding-left: 15px;
+        padding-right: 15px;
+}
+
+    /* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+    .dl-horizontal dt {
+        white-space: normal;
+    }
+
+    /* Set width on the form input elements since they're 100% wide by default */
+    input,
+    select,
+    textarea {
+        max-width: 280px;
+    }
+}

@@ -1,0 +1,58 @@
+﻿@model PackPickup1.Models.User
+
+@{
+    ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<h1 class="head">Registration Form </h1>
+<div class="clear-loading spinner">
+    <span></span>
+</div>
+<div class="w3ls-login box box--big">
+    <!-- form starts here -->
+    @using (Html.BeginForm("Save", "Account"))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="agile-field-txt">
+            @Html.TextBoxFor(u => u.Name, new { placeholder = " Enter Name" })
+            @Html.ValidationMessageFor(u => u.Name)
+        </div>
+
+        <div class="agile-field-txt">
+            @Html.TextBoxFor(u => u.Email, new { placeholder = "Enter Email" })
+            @Html.ValidationMessageFor(u => u.Email)
+        </div>
+
+        <div class="agile-field-txt form-group">
+            @Html.TextBoxFor(u => u.MobileNo, new { placeholder = "Enter Contact"})
+            @Html.ValidationMessageFor(u => u.MobileNo)
+        </div>
+
+        <div class="agile-field-txt form-group">
+            @Html.PasswordFor(u => u.Password, new { placeholder = "Enter Password", id = "myInput" })
+            @Html.ValidationMessageFor(u => u.Password)
+        </div>
+        <div class="agile_label">
+            <input id="check3" name="check3" type="checkbox" value="show password" onclick="myFunction()">
+            <label class="check" for="check3">Show password</label>
+        </div>
+
+        <button type="submit" class="button btn btn-outline-dark">LOGIN</button>
+    }
+</div>
+
+@section scripts
+{
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myInput");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
+}

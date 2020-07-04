@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<!---Jumbotron -->
+<div class="jumbotron">
+    <div class="container-fluid txt-center padding">
+        <div class="row">
+            <div class="col col-6 col-sm-6 ">
+                <img src="~/Images/app LOGO.png" />
+            </div>
+            <div class="col col-6 col-sm-6 ">
+                <img src="~/Images/Pack Pickup.png" />
+            </div>
+        </div>
+
+        <p>Packing and packup Service!</p>
+
+        <button class="btn btn-dark"> @Html.ActionLink("Sign In", "Login", "Account") </button>
+        <button class="btn btn-secondary"> @Html.ActionLink("Sign Up!", "Registration", "Account")</button>
+
+
+    </div>
+</div>
+
+<div class="body1">
+
+    <!-- Team Card-->
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col cols-6">
+                <button type="button" class="btn btn-light">Any Pickup or Truck</button>
+                <button type="button" class="btn btn-light"></button>
+                <button type="button" class="btn btn-light"></button>
+            </div>
+
+            <div class="col cols-6">
+                <button type="button" class="btn btn-light"></button>
+                <button type="button" class="btn btn-light"></button>
+                <button type="button" class="btn btn-light"></button>
+            </div>
+
+        </div>
+    </div>
+    
+    
+    <hr class="my-4" />
+    <!-- Connect -->
+    <div class="txt-center bg-light-100">
+        <h2>Free for 9 months</h2>
+    </div>
+</div>

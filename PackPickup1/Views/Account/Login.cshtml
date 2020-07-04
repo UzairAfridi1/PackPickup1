@@ -1,0 +1,48 @@
+﻿@model PackPickup1.ViewModels.AccountViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<h1 class="head">Login Form </h1>
+<div class="clear-loading spinner">
+    <span></span>
+</div>
+<div class="w3ls-login box box--big">
+    <!-- form starts here -->
+    @using (Html.BeginForm("Login", "Account"))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="agile-field-txt">
+            @Html.TextBoxFor(u => u.Email, new { placeholder = "Email" })
+            @Html.ValidationMessageFor(u => u.Email)
+        </div>
+        <div class="agile-field-txt form-group">
+            @Html.PasswordFor(u => u.Password, new { placeholder = "Password", id = "myInput" })
+            @Html.ValidationMessageFor(u => u.Password)
+        </div>
+        <div class="agile_label">
+            <input id="check3" name="check3" type="checkbox" value="show password" onclick="myFunction()">
+            <label class="check" for="check3">Show password</label>
+        </div>
+        <div class="agile-right">
+            @Html.ActionLink("Forget Password", "Forget Password")
+        </div>
+        <input type="submit" value="LOGIN">
+    }
+</div>
+
+@section scripts
+{
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myInput");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
+}
