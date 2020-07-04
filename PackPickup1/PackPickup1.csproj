@@ -167,6 +167,14 @@
     <Compile Include="Migrations\202007021018043_AllowNullPhotoId.designer.cs">
       <DependentUpon>202007021018043_AllowNullPhotoId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007041601184_AddPhoneCodeToUser.cs" />
+    <Compile Include="Migrations\202007041601184_AddPhoneCodeToUser.designer.cs">
+      <DependentUpon>202007041601184_AddPhoneCodeToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007041605443_RemoveNameFromDriver.cs" />
+    <Compile Include="Migrations\202007041605443_RemoveNameFromDriver.designer.cs">
+      <DependentUpon>202007041605443_RemoveNameFromDriver.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -414,6 +422,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007021018043_AllowNullPhotoId.resx">
       <DependentUpon>202007021018043_AllowNullPhotoId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007041601184_AddPhoneCodeToUser.resx">
+      <DependentUpon>202007041601184_AddPhoneCodeToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007041605443_RemoveNameFromDriver.resx">
+      <DependentUpon>202007041605443_RemoveNameFromDriver.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

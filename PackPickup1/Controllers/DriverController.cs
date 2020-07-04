@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using System.Data.Entity;
 using PackPickup1.Models;
 using PackPickup1.ViewModels;
 
@@ -19,7 +20,14 @@ namespace PackPickup1.Controllers
         }
         public ActionResult New()
         {
-            return View();
+            var user = _context.Users.ToList();
+            var viewmodel = new DriverViewModel
+            {
+                User = user,
+                Driver =new Driver()
+
+            };
+            return View(viewmodel);
         }
         [HttpPost]
         public ActionResult Save(Driver driver)
@@ -30,7 +38,6 @@ namespace PackPickup1.Controllers
             {
                 var driverInDb = _context.Drivers.Single(d => d.DriverId == driver.DriverId);
 
-                driverInDb.Name = driver.Name;
                 driverInDb.Nationality = driver.Nationality;
                 driverInDb.Language = driver.Language;
                 driverInDb.Country = driver.Country;
@@ -41,14 +48,14 @@ namespace PackPickup1.Controllers
 
             }
             _context.SaveChanges();
-            return RedirectToAction("New" , "Driver");
+            return RedirectToAction("Index" , "Driver");
         }          
         // GET: Driver
         [HttpGet]
         public ActionResult Index()
         {
 
-            var driver = _context.Drivers.ToList();
+            var driver = _context.Drivers.Include(u => u.User).ToList();
 
             return View(driver);
         }
@@ -60,11 +67,11 @@ namespace PackPickup1.Controllers
             if (driver == null)
                 return HttpNotFound();
 
-            var photo = _context.Photos.ToList();
+            var user = _context.Users.ToList();
             var viewmodel = new DriverViewModel
             {
                 Driver = driver,
-                Photos = photo,
+                User = user,
             };
 
             return View("New", viewmodel);

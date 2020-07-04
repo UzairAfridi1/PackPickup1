@@ -15,6 +15,8 @@ namespace PackPickup1.Models
 
         public string MobileNo { get; set; }
 
+        public string PhoneCode { get; set; }
+
         public string Password { get; set; }
 
         public string RoleType { get; set; }

@@ -11,7 +11,10 @@ namespace PackPickup1.ViewModels
 
         public Driver Driver { get; set; }
 
-        public IEnumerable<Photo> Photos { get; set; }   
+        public IEnumerable<Photo> Photos { get; set; }
+
+        public IEnumerable<User> User { get; set; }
+
 
     }
 }
