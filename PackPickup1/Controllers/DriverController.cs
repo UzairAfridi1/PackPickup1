@@ -40,8 +40,6 @@ namespace PackPickup1.Controllers
 
                 driverInDb.Nationality = driver.Nationality;
                 driverInDb.Language = driver.Language;
-                driverInDb.Country = driver.Country;
-                driverInDb.City = driver.City;
                 driverInDb.Area = driver.Area;
                 driverInDb.DateOfBirth = driver.DateOfBirth;
                 driverInDb.PhotoId = driver.PhotoId;

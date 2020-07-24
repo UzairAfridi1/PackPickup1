@@ -1,7 +1,7 @@
 ﻿@model PackPickup1.Models.User
 
 @{
-    ViewBag.Title = "Registration";
+    ViewBag.Title = "RegisterCustomer";
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 
@@ -11,7 +11,7 @@
 </div>
 <div class="w3ls-login box box--big">
     <!-- form starts here -->
-    @using (Html.BeginForm("Save", "Account"))
+    @using (Html.BeginForm("SaveCustomer", "Account"))
     {
         @Html.AntiForgeryToken()
 
@@ -26,7 +26,7 @@
         </div>
 
         <div class="agile-field-txt form-group">
-            @Html.TextBoxFor(u => u.MobileNo, new { placeholder = "Enter Contact"})
+            @Html.TextBoxFor(u => u.MobileNo, new { placeholder = "Enter Contact" })
             @Html.ValidationMessageFor(u => u.MobileNo)
         </div>
 

@@ -16,8 +16,8 @@
 
         <p>Packing and packup Service!</p>
 
-        <button class="btn btn-dark"> @Html.ActionLink("Sign In", "Login", "Account") </button>
-        <button class="btn btn-secondary"> @Html.ActionLink("Sign Up!", "Registration", "Account")</button>
+        <button type="submit" class="btn btn-dark" onclick="location.href='@Url.Action("Login" , "Account")'" >SIGN IN  </button>
+        <button type="submit" class="btn btn-secondary" onclick="location.href='@Url.Action("SignUp", "Account")'" > SIGN UP!</button>
 
 
     </div>
@@ -29,9 +29,9 @@
     <div class="container-fluid ">
         <div class="row">
             <div class="col cols-6">
-                <button type="button" class="btn btn-light">Any Pickup or Truck</button>
-                <button type="button" class="btn btn-light"></button>
-                <button type="button" class="btn btn-light"></button>
+                <button type="button" class="btn btn-light"  onclick="location.href='@Url.Action("Index" , "Vehicle")'" >Any Pickup or Truck</button>
+                <button type="button" class="btn btn-light" onclick="location.href='@Url.Action("Index" , "Vehicle" , new { type ="1 Ton truck" })'">1 Ton truck</button>
+                <button type="button" class="btn btn-light" onclick="location.href='@Url.Action("Index" , "Vehicle" , new { type ="2 Ton truck" })'">2 Ton truck</button>
             </div>
 
             <div class="col cols-6">

@@ -1,4 +1,12 @@
-﻿.body1 {
+﻿/* Set padding to keep content from hitting the edges */
+.body-content {
+    color: white;
+    background-color: black;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.body1 {
     height: 100%;
     width: 100%;
     font-family: 'Poppins',sans-serif;
@@ -6,6 +14,12 @@
     background-color: #4F4F4F;
     border-top-left-radius:5px;
     border-top-right-radius:5px;
+}
+
+.media-body {
+    color: white;
+    background-color:white;
+    border: groove;
 }
 
 .jumbotron {
@@ -60,11 +74,8 @@ hr .my-4 {
 @media (max-width: 576px){
 
 
-    /* Set padding to keep content from hitting the edges */
-.body-content {
-        padding-left: 15px;
-        padding-right: 15px;
-}
+  
+
 
     /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 

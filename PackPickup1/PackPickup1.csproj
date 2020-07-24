@@ -124,6 +124,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DriverController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -175,15 +176,80 @@
     <Compile Include="Migrations\202007041605443_RemoveNameFromDriver.designer.cs">
       <DependentUpon>202007041605443_RemoveNameFromDriver.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007221054283_AddTbl-ReviewtoDb.cs" />
+    <Compile Include="Migrations\202007221054283_AddTbl-ReviewtoDb.designer.cs">
+      <DependentUpon>202007221054283_AddTbl-ReviewtoDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007230559440_AddTbl-StateToDb.cs" />
+    <Compile Include="Migrations\202007230559440_AddTbl-StateToDb.designer.cs">
+      <DependentUpon>202007230559440_AddTbl-StateToDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007230615490_AddTbl-CountryToDb.cs" />
+    <Compile Include="Migrations\202007230615490_AddTbl-CountryToDb.designer.cs">
+      <DependentUpon>202007230615490_AddTbl-CountryToDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007230620070_AddTbl-CityToDb.cs" />
+    <Compile Include="Migrations\202007230620070_AddTbl-CityToDb.designer.cs">
+      <DependentUpon>202007230620070_AddTbl-CityToDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007230624000_RemoveCountryfromTbl-Driver.cs" />
+    <Compile Include="Migrations\202007230624000_RemoveCountryfromTbl-Driver.designer.cs">
+      <DependentUpon>202007230624000_RemoveCountryfromTbl-Driver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007230624575_RemoveCityfromTbl-Driver.cs" />
+    <Compile Include="Migrations\202007230624575_RemoveCityfromTbl-Driver.designer.cs">
+      <DependentUpon>202007230624575_RemoveCityfromTbl-Driver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007230627163_AddTbl-CountryToDriver.cs" />
+    <Compile Include="Migrations\202007230627163_AddTbl-CountryToDriver.designer.cs">
+      <DependentUpon>202007230627163_AddTbl-CountryToDriver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007230641229_AddTbl-StateToDriver.cs" />
+    <Compile Include="Migrations\202007230641229_AddTbl-StateToDriver.designer.cs">
+      <DependentUpon>202007230641229_AddTbl-StateToDriver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007230643233_AddTbl-CityToDriver.cs" />
+    <Compile Include="Migrations\202007230643233_AddTbl-CityToDriver.designer.cs">
+      <DependentUpon>202007230643233_AddTbl-CityToDriver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007230647509_RemoveCountryfromTbl-Customer.cs" />
+    <Compile Include="Migrations\202007230647509_RemoveCountryfromTbl-Customer.designer.cs">
+      <DependentUpon>202007230647509_RemoveCountryfromTbl-Customer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007230648511_RemoveCityfromTbl-Customer.cs" />
+    <Compile Include="Migrations\202007230648511_RemoveCityfromTbl-Customer.designer.cs">
+      <DependentUpon>202007230648511_RemoveCityfromTbl-Customer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007230652029_AddTbl-CountryToCustomer.cs" />
+    <Compile Include="Migrations\202007230652029_AddTbl-CountryToCustomer.designer.cs">
+      <DependentUpon>202007230652029_AddTbl-CountryToCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007230654059_AddTbl-StateToCustomer.cs" />
+    <Compile Include="Migrations\202007230654059_AddTbl-StateToCustomer.designer.cs">
+      <DependentUpon>202007230654059_AddTbl-StateToCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007230656429_AddTbl-CityToCustomer.cs" />
+    <Compile Include="Migrations\202007230656429_AddTbl-CityToCustomer.designer.cs">
+      <DependentUpon>202007230656429_AddTbl-CityToCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007230939576_AddDateTimeToTbl-Review.cs" />
+    <Compile Include="Migrations\202007230939576_AddDateTimeToTbl-Review.designer.cs">
+      <DependentUpon>202007230939576_AddDateTimeToTbl-Review.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\Photo.cs" />
+    <Compile Include="Models\Review.cs" />
+    <Compile Include="Models\State.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\DriverViewModel.cs" />
     <Compile Include="ViewModels\ResetPasswordViewModel.cs" />
   </ItemGroup>
@@ -253,6 +319,9 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </Content>
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
@@ -377,6 +446,11 @@
     <Content Include="Views\Account\Registration.cshtml" />
     <Content Include="Views\Driver\Index.cshtml" />
     <Content Include="Views\Driver\New.cshtml" />
+    <Content Include="Views\Vehicle\Index.cshtml" />
+    <Content Include="Views\Account\Driver.cshtml" />
+    <Content Include="Views\Account\Customer.cshtml" />
+    <Content Include="Views\Account\SignUp.cshtml" />
+    <Content Include="Views\Account\RegisterCustomer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -428,6 +502,51 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007041605443_RemoveNameFromDriver.resx">
       <DependentUpon>202007041605443_RemoveNameFromDriver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007221054283_AddTbl-ReviewtoDb.resx">
+      <DependentUpon>202007221054283_AddTbl-ReviewtoDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007230559440_AddTbl-StateToDb.resx">
+      <DependentUpon>202007230559440_AddTbl-StateToDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007230615490_AddTbl-CountryToDb.resx">
+      <DependentUpon>202007230615490_AddTbl-CountryToDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007230620070_AddTbl-CityToDb.resx">
+      <DependentUpon>202007230620070_AddTbl-CityToDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007230624000_RemoveCountryfromTbl-Driver.resx">
+      <DependentUpon>202007230624000_RemoveCountryfromTbl-Driver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007230624575_RemoveCityfromTbl-Driver.resx">
+      <DependentUpon>202007230624575_RemoveCityfromTbl-Driver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007230627163_AddTbl-CountryToDriver.resx">
+      <DependentUpon>202007230627163_AddTbl-CountryToDriver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007230641229_AddTbl-StateToDriver.resx">
+      <DependentUpon>202007230641229_AddTbl-StateToDriver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007230643233_AddTbl-CityToDriver.resx">
+      <DependentUpon>202007230643233_AddTbl-CityToDriver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007230647509_RemoveCountryfromTbl-Customer.resx">
+      <DependentUpon>202007230647509_RemoveCountryfromTbl-Customer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007230648511_RemoveCityfromTbl-Customer.resx">
+      <DependentUpon>202007230648511_RemoveCityfromTbl-Customer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007230652029_AddTbl-CountryToCustomer.resx">
+      <DependentUpon>202007230652029_AddTbl-CountryToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007230654059_AddTbl-StateToCustomer.resx">
+      <DependentUpon>202007230654059_AddTbl-StateToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007230656429_AddTbl-CityToCustomer.resx">
+      <DependentUpon>202007230656429_AddTbl-CityToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007230939576_AddDateTimeToTbl-Review.resx">
+      <DependentUpon>202007230939576_AddDateTimeToTbl-Review.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

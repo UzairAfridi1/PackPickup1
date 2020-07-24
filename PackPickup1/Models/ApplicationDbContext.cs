@@ -13,6 +13,14 @@ namespace PackPickup1.Models
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<State> States { get; set; }
+        public DbSet<City> Cities { get; set; }
+
+
+
+
 
 
 

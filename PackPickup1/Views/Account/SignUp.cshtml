@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<h1 class="text-center">SIGN UP</h1>
+
+<div class="jumbotron">
+    <div class="container-fluid txt-center padding">
+        <div class="row">
+            <div class="col col-6 col-sm-6 ">
+                <img src="~/Images/app LOGO.png" />
+            </div>
+            <div class="col col-6 col-sm-6 ">
+                <img src="~/Images/Pack Pickup.png" />
+            </div>
+        </div>
+
+        <p>Packing and packup Service!</p>
+
+        <button type="submit"  class="btn btn-dark" onclick="location.href='@Url.Action("Registration", "Account")'" > Driver </button>
+        <button type="submit" class="btn btn-secondary" onclick="location.href='@Url.Action("RegisterCustomer", "Account")'" > Customer </button>
+
+
+    </div>
+</div>

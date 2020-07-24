@@ -6,10 +6,9 @@ using PackPickup1.Models;
 
 namespace PackPickup1.ViewModels
 {
-    public class DriverViewModel
+    public class CustomerViewModel
     {
-
-        public Driver Driver { get; set; }
+        public Customer Customer { get; set; }
 
         public IEnumerable<Country> Countries { get; set; }
 
@@ -17,8 +16,6 @@ namespace PackPickup1.ViewModels
 
         public IEnumerable<City> Cities { get; set; }
 
-        public IEnumerable<User> User { get; set; }
-
-
+        public IEnumerable<User> Users { get; set; }
     }
 }

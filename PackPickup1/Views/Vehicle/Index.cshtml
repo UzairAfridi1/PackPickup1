@@ -1,0 +1,43 @@
+﻿@model IEnumerable<PackPickup1.Models.Vehicle>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">List Of Vehicles</h1>
+
+<table class="table">
+    <tr>
+        <th>
+           Name 
+        <th>
+           Email Address
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.Driver.User.Name
+        </td>
+        <td>
+            @item.Driver.User.Email
+        </td>
+        <td>
+            @item.Type
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.VehicleId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.VehicleId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.VehicleId })
+        </td>
+    </tr>
+}
+
+</table>
