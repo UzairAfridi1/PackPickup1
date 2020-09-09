@@ -15,6 +15,8 @@ namespace PackPickup1.Models
 
         public string Nationality { get; set; }
 
+        public string Image { get; set; }
+
         public bool IsDeleted { get; set; }
 
         public User User { get; set; }

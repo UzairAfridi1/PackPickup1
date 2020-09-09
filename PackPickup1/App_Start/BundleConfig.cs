@@ -9,7 +9,8 @@ namespace PackPickup1
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery.min.js",
+                        "~/Scripts/Kendo.all.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -26,7 +27,8 @@ namespace PackPickup1
              "~/Content/bootstrap.css",
              "~/Content/fontawesome-all.css",
              "~/Content/Login.css",
-             "~/Content/NavbarandFooter.css"));
+             "~/Content/NavbarandFooter.css",
+             "~/Content/kendo.default-v2.min.css"));
         }
     }
 }

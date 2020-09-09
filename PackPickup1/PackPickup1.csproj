@@ -236,6 +236,14 @@
     <Compile Include="Migrations\202007230939576_AddDateTimeToTbl-Review.designer.cs">
       <DependentUpon>202007230939576_AddDateTimeToTbl-Review.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007280554303_AddImagetoTbl-Driver.cs" />
+    <Compile Include="Migrations\202007280554303_AddImagetoTbl-Driver.designer.cs">
+      <DependentUpon>202007280554303_AddImagetoTbl-Driver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007280557301_AddImageToTbl-Customer.cs" />
+    <Compile Include="Migrations\202007280557301_AddImageToTbl-Customer.designer.cs">
+      <DependentUpon>202007280557301_AddImageToTbl-Customer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\City.cs" />
@@ -266,6 +274,7 @@
     <Content Include="Content\fontawesome-all.min.css" />
     <Content Include="Content\fontawesome.css" />
     <Content Include="Content\fontawesome.min.css" />
+    <Content Include="Content\kendo.default-v2.min.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\NavbarandFooter.css" />
     <Content Include="Content\regular.css" />
@@ -280,8 +289,12 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\app LOGO.png" />
+    <Content Include="Images\avatar2.png" />
     <Content Include="Images\bg.jpg" />
+    <Content Include="Images\Logo.jpg" />
     <Content Include="Images\Pack Pickup.png" />
+    <Content Include="Images\PackPickup4.jpg" />
+    <Content Include="Images\PackPickup5.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -328,11 +341,17 @@
     <Content Include="Scripts\jquery-3.5.1.slim.js" />
     <Content Include="Scripts\jquery-3.5.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Kendo.all.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -451,6 +470,9 @@
     <Content Include="Views\Account\Customer.cshtml" />
     <Content Include="Views\Account\SignUp.cshtml" />
     <Content Include="Views\Account\RegisterCustomer.cshtml" />
+    <Content Include="Views\Vehicle\Details.cshtml" />
+    <Content Include="Scripts\moment.min.js.map" />
+    <Content Include="Scripts\moment-with-locales.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -547,6 +569,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007230939576_AddDateTimeToTbl-Review.resx">
       <DependentUpon>202007230939576_AddDateTimeToTbl-Review.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007280554303_AddImagetoTbl-Driver.resx">
+      <DependentUpon>202007280554303_AddImagetoTbl-Driver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007280557301_AddImageToTbl-Customer.resx">
+      <DependentUpon>202007280557301_AddImageToTbl-Customer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

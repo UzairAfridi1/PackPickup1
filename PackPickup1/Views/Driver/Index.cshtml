@@ -2,36 +2,138 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style type="text/css">
+    .customer-photo {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-size: 32px 35px;
+        background-position: center center;
+        vertical-align: middle;
+        line-height: 32px;
+        box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
+        margin-left: 5px;
+    }
 
-<h2>Index</h2>
+    .customer-name {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 32px;
+        padding-left: 3px;
+    }
+</style>
+<h1 class="text-center">Drivers List</h1>
 
-<p>
-    @Html.ActionLink("Create New", "New")
-</p>
-<table class="table table-bordered table-dark" >
-    <tr>
-        <th>
-            Name
-        </th>
-        <th>
-            Email Address
-        </th>
 
-        <th></th>
-    </tr>
+<div id="example">
+    <div id="grid">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink(item.User.Name, "Edit", new { id = item.DriverId })    
-        </td>
-        <td>
-            @item.User.Email
-        </td>
-        <td>
-           
-        </td>
-    </tr>
-}
+    </div>
+</div>
 
-</table>
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/moment.js"></script>
+<script>
+    $(document).ready(function () {
+        KendoGridDataLoading();
+
+    });
+    function KendoGridDataLoading() {
+
+        //Grid Setting
+        $("#grid").kendoGrid({
+
+            dataSource: {
+
+                transport: {
+
+                    read: {
+                        url: "/Driver/getDriver",
+
+                    },
+                    update: {
+                        url: "/Driver/Edit",
+                        type: "POST",
+                    },
+                    //destroy: {
+                    //    url: "",
+
+                    //},
+                    //create: {
+                    //    url: "/Driver/Save",
+                    //    type: "POST",
+
+                    //},
+
+                    parameterMap: function (options, operation) {
+                        if (operation == "update") {
+                            options.DateOfBirth = kendo.toString(options.DateOfBirth, "MM/dd/yyyy");
+                            return options;
+                        }
+                    }
+
+                },
+
+                schema: {
+                    model: {
+                        id: "DriverId",
+                        fields: { 
+                                DriverId: { editable: false, nullable: false },
+                                Nationality: { validation: { required: true } },
+                                Language: { validation: { required: true } },
+                                DateOfBirth: { type: "date", editable: true },
+                                //Discontinued: { type: "boolean" },
+                                //UnitsInStock: { type: "number", validation: { min: 0, required: true } }
+                        }
+                    }
+                },
+
+                pageSize: 5,
+
+            },
+            height: 550,
+            groupable: true,
+            sortable: true,
+            selectable: "multiple",
+            batch: true,
+            pageable: {
+                refresh: true,
+                pageSizes: true,
+                buttonCount: 5
+            },
+
+            toolbar: ["create"],
+
+            columns: [
+            {
+                template: "<div class='customer-photo'" +
+                    "style='background-image:url(../Images/#:Image#);'></div>" +
+                    "<div class='customer-name'>#: User.Name  #</div>",
+                field: "User.Name",
+                title: "Driver Name",
+                width: 240
+            }, {
+                field: "Nationality",
+                    title: "Nationality",
+            }, {
+                field: "Language",
+                title: "Language"
+                },
+                {
+                    title: "DateOfBirth",
+                    field: "DateOfBirth",
+                    format: "{0:g}"
+                },
+                { command: ["edit", "destroy"], title: "Actions", width: "200px" }
+            ],
+            editable: "inline",
+
+            save: function () {
+                this.refresh();
+            }
+        });
+
+
+    }
+</script>

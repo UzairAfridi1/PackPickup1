@@ -7,37 +7,131 @@
 
 <h1 class="text-center">List Of Vehicles</h1>
 
-<table class="table">
-    <tr>
-        <th>
-           Name 
-        <th>
-           Email Address
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Type)
-        </th>
+<style type="text/css">
+    .customer-photo {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-size: 32px 35px;
+        background-position: center center;
+        vertical-align: middle;
+        line-height: 32px;
+        box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
+        margin-left: 5px;
+    }
 
-        <th></th>
-    </tr>
+    .customer-name {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 32px;
+        padding-left: 3px;
+    }
+</style>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @item.Driver.User.Name
-        </td>
-        <td>
-            @item.Driver.User.Email
-        </td>
-        <td>
-            @item.Type
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.VehicleId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.VehicleId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.VehicleId })
-        </td>
-    </tr>
-}
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/Kendo.all.min.js"></script>
+<div id="example">
+    <div id="grid">
 
-</table>
+    </div>
+
+</div>
+
+
+
+
+
+ 
+
+
+<script>
+    $(document).ready(function () {
+        KendoGridDataLoading();
+    });
+    function KendoGridDataLoading() {
+        // Filters for Kendo Grid Columns
+        var filterOption = {
+            extra: false,
+            operators: {
+                string: {
+                    eq: "Is Equal To",
+                    startswith: "Starts With",
+                    contains: "Contains",
+                    endswith: "Ends With",
+                    type: "1 Ton truck"
+                }
+            }
+        };
+        var columnsproperty = [
+            {
+                template: "<div class='customer-photo'" +
+                    "style='background-image:url(../Images/#: Driver.Image#);'></div>" +
+                    "<div class='customer-name'>#: Driver.User.Name  #</div>",
+                title: "Drivers",
+                field: "Driver.User.Name",
+                filterable: filterOption,
+                width: 150
+            },
+            { title: "Vehicle Type", field: "Type", filterable: filterOption, width: 150 },
+            { title: "Vehicle Size", field: "Size", filterable: filterOption, width: 150 },
+            { title: "Vehicle Capacity", field: "Capacity", filterable: filterOption, width: 150 },
+            { title: "Vehicle Weight", field: "Weight", filterable: filterOption, width: 100 },
+            { command: ["edit", "destroy"], title: "Actions", width: "150px" }
+          
+        ];
+
+        //Grid Setting
+     
+        $("#grid").kendoGrid({
+            dataSource: {
+                transport: {
+                    read: {
+                        url: "/Vehicle/getVehicle",
+                    },
+                    update: {
+                        url: "/Vehicle/Edit",
+                        type:"POST"
+                    }
+                },
+                pageSize: 5,
+              
+                //    change: onChange,
+                schema: {
+                    model: {
+                        id: "VehicleId",
+                        fields: {
+                            VehicleId: { editable: false, nullable: false },
+                            Type: { validation: { required: true } },
+                            Weight: { type: "number", validation: { required: true, min: 1 } },
+                            //Discontinued: { type: "boolean" },
+                            //UnitsInStock: { type: "number", validation: { min: 0, required: true } }
+                        }
+                    }
+
+                }
+
+
+            },
+            height: "300px",
+            columns: columnsproperty,
+            // sortable: { mode: "multiple", allowUnsort: true },
+            selectable: "single",
+            filterable: true,
+            sortable: true,
+            batch:true,
+            editable: "inline",
+            pageable: {
+
+                pageSizes: [5, 10, 15, 20, 25, 50, 75, 100],
+
+                width: 20
+
+            },
+             save: function () {
+                this.refresh();
+            }
+        });
+    }
+</script>
+

@@ -6,16 +6,25 @@
 }
 
 
-@using (Html.BeginForm("AddDriver", "Account"))
+@using (Html.BeginForm("AddDriver", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
 
     <h1 class="text-center">Driver</h1>
     <hr class="media-body" />
+    <div class="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <img src="~/Images/avatar2.png" class="avatar img-circle align-self-center" alt=""
+         style="width:150px;" id="user_img">
+    <hr />
+    <div class="form-group">
+        <input type="file" id="user_img" name="profileImage" value="@Model.Driver.Image" onchange="show(this)" accept="image/*" />
+    </div>
+    </div>
     <div class="row">
         <div class="col col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Driver.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -52,7 +61,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Driver.Country, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.Driver.Country, new SelectList(Model.Countries, "Id", "Name"), "Select Country", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownListFor(model => model.Driver.Id, new SelectList(Model.Countries, "Id", "Name"), "Select Country", new { @class = "form-control input-sm" })
                     @Html.ValidationMessageFor(model => model.Driver.Country, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -60,31 +69,45 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Driver.State, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.Driver.State, new SelectList(Model.States, "StateId", "Name"), "Select State", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownListFor(model => model.Driver.StateId, new SelectList(Model.States, "StateId", "Name"), "Select State", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Driver.State, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.Driver.City, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.Driver.City, new SelectList(Model.Cities, "CityId", "Name"), "Select City", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownListFor(model => model.Driver.CityId, new SelectList(Model.Cities, "CityId", "Name"), "Select City", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Driver.City, "", new { @class = "text-danger" })
                 </div>
             </div>
 
         </div>
     </div>
-   
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-outline-primary " />
-            </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-outline-primary " />
         </div>
-      
-    
- }
+    </div>
 
 
-        @section Scripts {
-            @Scripts.Render("~/bundles/jqueryval")
+}
+
+@section Scripts {
+
+    <script>
+        function show(input) {
+            if (input.files && input.files[0]) {
+                var filerdr = new FileReader();
+                filerdr.onload = function (e) {
+                    $('#user_img').attr('src', e.target.result);
+                }
+                filerdr.readAsDataURL(input.files[0]);
+            }
         }
+    </script>
+
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+}

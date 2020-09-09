@@ -1,8 +1,9 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using System.Data.Entity;
+﻿using Newtonsoft.Json;
 using PackPickup1.Models;
-using PackPickup1.ViewModels;
+using System;
+using System.Data.Entity;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace PackPickup1.Controllers
 {
@@ -18,61 +19,70 @@ namespace PackPickup1.Controllers
         {
             _context.Dispose();
         }
-        public ActionResult New()
-        {
-            var user = _context.Users.ToList();
-            var viewmodel = new DriverViewModel
-            {
-                User = user,
-                Driver =new Driver()
+        //public ActionResult New()
+        //{
+        //    var user = _context.Users.ToList();
+        //    var json = JsonConvert.SerializeObject(user);
+        //    var viewmodel = new DriverViewModel
+        //    {
+        //        User = user,
+        //        Driver = new Driver()
 
-            };
-            return View(viewmodel);
-        }
-        [HttpPost]
-        public ActionResult Save(Driver driver)
-        {
-            if(driver.DriverId == 0)
-             _context.Drivers.Add(driver);
-            else
-            {
-                var driverInDb = _context.Drivers.Single(d => d.DriverId == driver.DriverId);
+        //    };
+        //    return View(viewmodel);
+        //}
+        //[HttpPost]
+        //public ActionResult Save(Driver driver)
+        //{
+        //    if (driver.DriverId == 0)
+        //        _context.Drivers.Add(driver);
+        //    else
+        //    {
+        //        var driverInDb = _context.Drivers.Single(d => d.DriverId == driver.DriverId);
 
-                driverInDb.Nationality = driver.Nationality;
-                driverInDb.Language = driver.Language;
-                driverInDb.Area = driver.Area;
-                driverInDb.DateOfBirth = driver.DateOfBirth;
-                driverInDb.PhotoId = driver.PhotoId;
+        //        driverInDb.Nationality = driver.Nationality;
+        //        driverInDb.Language = driver.Language;
+        //        driverInDb.Area = driver.Area;
+        //        driverInDb.DateOfBirth = driver.DateOfBirth;
 
-            }
-            _context.SaveChanges();
-            return RedirectToAction("Index" , "Driver");
-        }          
+        //    }
+        //    _context.SaveChanges();
+        //    return Json(driver, JsonRequestBehavior.AllowGet);
+        //}
         // GET: Driver
         [HttpGet]
         public ActionResult Index()
         {
 
-            var driver = _context.Drivers.Include(u => u.User).ToList();
+            return View();
 
-            return View(driver);
+
         }
 
-        public  ActionResult Edit(int id)
+        [HttpGet]
+        public JsonResult getDriver()
         {
-            var driver = _context.Drivers.SingleOrDefault(d => d.DriverId == id);
+            var driver = _context.Drivers.Include(u => u.User).ToList();
+            var data = JsonConvert.SerializeObject(driver);
+            return Json(driver, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult Edit(int Driverid)
+        {
+            string nationality = Request["Nationality"].ToString();
+            string language = Request["Language"].ToString();
+            DateTime birthday = Convert.ToDateTime(value: Request["DateOfBirth"].ToString());
 
-            if (driver == null)
-                return HttpNotFound();
+            var driver = _context.Drivers.SingleOrDefault(d => d.DriverId == Driverid);
 
-            var user = _context.Users.ToList();
-            var viewmodel = new DriverViewModel
-            {
-                Driver = driver,
-                User = user,
-            };
+            driver.Nationality = nationality;
+            driver.Language = language;
+            //_context.Entry(Convert.ToDateTime(Request["DateOfBirth"].ToString())).State = EntityState.Modified;
+            driver.DateOfBirth = birthday;
 
-            return View("New", viewmodel);
+            _context.SaveChanges();
+
+            return View();
         }
     }
 }

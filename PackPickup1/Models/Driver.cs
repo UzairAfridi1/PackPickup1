@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 
@@ -18,6 +19,8 @@ namespace PackPickup1.Models
         public string Nationality { get; set; }
 
         public string Language { get; set; }
+
+        public string Image { get; set; }
 
         public User User { get; set; }
 

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using PackPickup1.Models;
 using PackPickup1.ViewModels;
 using System.Data.Entity;
-
+using System.IO;
 
 namespace PackPickup1.Controllers
 {
@@ -88,7 +88,7 @@ namespace PackPickup1.Controllers
             }
             else
             {
-                var userid = _context.Users.Max(u => u.UserId + 1);
+                var userid = _context.Users.DefaultIfEmpty().Max(d => d == null ? 0 : d.UserId + 1);
                 user.UserId = userid;
                 user.RoleType = "Driver";
                 _context.Users.Add(user);
@@ -120,17 +120,35 @@ namespace PackPickup1.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddDriver(Driver driver)
+        public ActionResult AddDriver(Driver driver , HttpPostedFileBase profileImage)
         {
             int userid = int.Parse(Session["userid"].ToString());
             var user = _context.Users.Where(u => u.UserId == userid).SingleOrDefault();
+            string image = Request.Form["profileImage"];
 
             driver.UserId = user.UserId;
+
+
+            var allowedExtensions = new[] { ".Jpg", ".png", ".jpg", "jpeg" };
+            var path = "";
+            var myFile = "";
+            if (profileImage == null)
+            {
+                myFile = "~/Images/avatar2.png";
+            }
+            else
+            {
+                myFile = profileImage.FileName;
+                path = Path.Combine(Server.MapPath("~/Images/"), myFile);
+                profileImage.SaveAs(path);
+            }
 
             var driverid = _context.Drivers.DefaultIfEmpty().Max(d => d == null ? 0 : d.DriverId + 1);
 
             driver.DriverId = driverid;
+            driver.Image = myFile;
             
+
             _context.Drivers.Add(driver);
             _context.SaveChanges();
 
@@ -189,15 +207,31 @@ namespace PackPickup1.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddCustomer(Customer customer)
+        public ActionResult AddCustomer(Customer customer , HttpPostedFileBase profileImage)
         {
             int userid = int.Parse(Session["userid"].ToString());
             var user = _context.Users.Where(u => u.UserId == userid).SingleOrDefault();
+            string image = Request.Form["profileImage"];
 
             customer.UserId = user.UserId;
 
+            var allowedExtensions = new[] { ".Jpg", ".png", ".jpg", "jpeg" };
+            var path = "";
+            var myFile = "";
+            if (profileImage == null)
+            {
+                myFile = "~/Images/avatar2.png";
+            }
+            else
+            {
+                myFile = profileImage.FileName;
+                path = Path.Combine(Server.MapPath("~/Images/"), myFile);
+                profileImage.SaveAs(path);
+            }
+
             var customerid = _context.Customers.DefaultIfEmpty().Max(d => d == null ? 0 : d.CustomerId + 1);
 
+            customer.Image = myFile;
             customer.CustomerId = customerid;
             customer.IsDeleted = false;
 
