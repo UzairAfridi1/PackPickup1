@@ -86,15 +86,7 @@ summary,
 time,
 mark,
 audio,
-video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-}
-
+video,
 article,
 aside,
 details,
@@ -105,11 +97,11 @@ header,
 hgroup,
 menu,
 nav,
-section {
+/*section {
     display: block;
-}
+}*/
 
-ol,
+/*ol,
 ul {
     list-style: none;
     margin: 0px;
@@ -132,11 +124,11 @@ q {
 table {
     border-collapse: collapse;
     border-spacing: 0;
-}
+}*/
 
-.clearfix {
+/*.clearfix {
     clear: both;
-}
+}*/
 
 /*--start editing from here--*/
 
@@ -219,31 +211,34 @@ img {
 #body {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 100%;
-    background: url('../Images/bg.jpg')no-repeat center ;
+    /*background: url('../Images/bg.jpg')no-repeat center ;*/
     background-size: cover;
     width:100%;
+    margin:0;
     height:100%;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    -ms-background-size: cover;
     text-align: center;
 }
-
+#myVideo {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
 .w3ls-login {
-    display: -webkit-flex;
-    display: -webkit-box;
-    display: -moz-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
+  
+    position: fixed;
+    height: 100vh;
+    text-align: center;
     display: flex;
-    justify-content: center;
     align-items: center;
-    -webkit-box-pack: center;
-    -moz-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
     justify-content: center;
+   
+}
+video {
+    width: 100%;
+    height: auto;
 }
 
 .box input[type="text"]:focus, .box input[type="password"]:focus {
@@ -266,13 +261,12 @@ img {
     color: #fff;
     text-shadow: 1px 1px 1px #000;
     letter-spacing: 3px;
-    padding: 1em 1vw;
     text-align: center;
     font-family: 'Source Sans Pro', sans-serif;
 }
 
 .w3ls-login form {
-    position: relative;
+    position: center;
     max-width: 550px;
     margin: 0 5vw;
     padding: 3vw;
@@ -308,7 +302,7 @@ img {
 .w3ls-login input[type="text"],
 .w3ls-login input[type="password"] {
     width: 400px;
-    color: #fff;
+    color: black;
     outline: none;
     font-size: 15px;
     letter-spacing: 2px;
@@ -316,7 +310,7 @@ img {
     padding: 15px 20px;
     box-sizing: border-box;
     border: none;
-    border: 1px solid #eee;
+    border: 1px solid red;
     border-radius: 30px;
     -webkit-appearance: none;
     font-family: 'Source Sans Pro', sans-serif;

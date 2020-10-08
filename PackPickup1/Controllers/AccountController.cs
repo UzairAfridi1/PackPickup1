@@ -241,6 +241,11 @@ namespace PackPickup1.Controllers
             return RedirectToAction("Index", "Home");
 
         }
+
+        public ActionResult DriverRegistration()
+        {
+            return View();
+        }
     }
 
 }

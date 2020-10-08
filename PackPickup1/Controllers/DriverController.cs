@@ -71,18 +71,20 @@ namespace PackPickup1.Controllers
         {
             string nationality = Request["Nationality"].ToString();
             string language = Request["Language"].ToString();
-            DateTime birthday = Convert.ToDateTime(value: Request["DateOfBirth"].ToString());
+            string name = Request["User[Name]"].ToString();
+            DateTime birthday = Convert.ToDateTime(Request["DateOfBirth"].ToString());
 
-            var driver = _context.Drivers.SingleOrDefault(d => d.DriverId == Driverid);
+            var driver = _context.Drivers.Include(u => u.User).SingleOrDefault(d => d.DriverId == Driverid);
 
             driver.Nationality = nationality;
             driver.Language = language;
-            //_context.Entry(Convert.ToDateTime(Request["DateOfBirth"].ToString())).State = EntityState.Modified;
             driver.DateOfBirth = birthday;
+            driver.User.Name = name;
 
             _context.SaveChanges();
 
             return View();
         }
+        
     }
 }

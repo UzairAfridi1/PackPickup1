@@ -8,9 +8,19 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body class="body-content">
-    
-        @RenderBody()
-    
+
+    <nav class="navbar navbar-expand-sm bg-white navbar-expand fixed-top">
+        <a class="navbar-brand" href="#">
+            <img src="~/Images/logo.svg" class="text-center" alt="Logo">
+        </a>
+        @*<div class="ml-auto">
+            <button type="submit" class="btn btn-dark" onclick="location.href='@Url.Action("Login" , "Account")'">Log In</button>
+
+            <button type="submit" class="btn btn-secondary" onclick="location.href='@Url.Action("SignUp", "Account")'"> Register Free!</button>
+        </div>*@
+    </nav>
+    @RenderBody()
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

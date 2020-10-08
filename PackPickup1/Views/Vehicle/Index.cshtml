@@ -50,33 +50,28 @@
         KendoGridDataLoading();
     });
     function KendoGridDataLoading() {
-        // Filters for Kendo Grid Columns
-        var filterOption = {
-            extra: false,
-            operators: {
-                string: {
-                    eq: "Is Equal To",
-                    startswith: "Starts With",
-                    contains: "Contains",
-                    endswith: "Ends With",
-                    type: "1 Ton truck"
-                }
-            }
-        };
+      
         var columnsproperty = [
+            //{
+            //    template: "<div class='customer-photo'" +
+            //        "style='background-image:url(../Images/#: Driver.Image#);'></div>" +
+            //        "<div class='customer-name'>#: Driver.User.Name  #</div>",
+            //    title: "Drivers",
+            //    field: "Driver.User.Name",
+            //    filterable: filterOption,
+            //    width: 150
+            //},
             {
-                template: "<div class='customer-photo'" +
-                    "style='background-image:url(../Images/#: Driver.Image#);'></div>" +
-                    "<div class='customer-name'>#: Driver.User.Name  #</div>",
-                title: "Drivers",
-                field: "Driver.User.Name",
-                filterable: filterOption,
-                width: 150
+                title: "Vehicle Type",
+                field: "Type",
+                filterable: {
+                    ui: typeFilter
             },
-            { title: "Vehicle Type", field: "Type", filterable: filterOption, width: 150 },
-            { title: "Vehicle Size", field: "Size", filterable: filterOption, width: 150 },
-            { title: "Vehicle Capacity", field: "Capacity", filterable: filterOption, width: 150 },
-            { title: "Vehicle Weight", field: "Weight", filterable: filterOption, width: 100 },
+            width: 150 },
+            { title: "Vehicle Size", field: "Size", filterable: true, width: 150 },
+            { title: "Vehicle Capacity", field: "Capacity", filterable: true, width: 150 },
+            { title: "Vehicle Weight", field: "Weight", filterable: true, width: 100 },
+            { title: "Vehicle Image", field: "Photo.Image", filterable: false, width: 100 },
             { command: ["edit", "destroy"], title: "Actions", width: "150px" }
           
         ];
@@ -91,11 +86,16 @@
                     },
                     update: {
                         url: "/Vehicle/Edit",
-                        type:"POST"
+                        type: "POST"
+                    },
+                    create: {
+                        url: "/Vehicle/Create",
+                        type: "POST"
                     }
+
                 },
                 pageSize: 5,
-              
+
                 //    change: onChange,
                 schema: {
                     model: {
@@ -103,23 +103,44 @@
                         fields: {
                             VehicleId: { editable: false, nullable: false },
                             Type: { validation: { required: true } },
+                            Size: { validation: { required: true } },
+                            Capacity: { validation: { required: true } },
                             Weight: { type: "number", validation: { required: true, min: 1 } },
-                            //Discontinued: { type: "boolean" },
-                            //UnitsInStock: { type: "number", validation: { min: 0, required: true } }
+                            
+
+                        }
+                    },
+                     model: {
+                        id: "PhotoId",
+                        fields: {
+                            Image: { type:"image"}
+
+
                         }
                     }
 
                 }
-
+                        
 
             },
             height: "300px",
             columns: columnsproperty,
-            // sortable: { mode: "multiple", allowUnsort: true },
             selectable: "single",
-            filterable: true,
+            filterable: {
+                extra: false,
+                operators: {
+                    string: {
+                        startswith: "Starts with",
+                        eq: "Is equal to",
+                        neq: "Is not equal to"
+                    }
+                }
+            },
             sortable: true,
-            batch:true,
+            groupable: true,
+            resizable: true,
+            batch: true,
+            toolbar: ["create"],
             editable: "inline",
             pageable: {
 
@@ -131,6 +152,18 @@
              save: function () {
                 this.refresh();
             }
+        });
+    }
+    function typeFilter(element) {
+        element.kendoDropDownList({
+            dataSource: {
+                transport: {
+                    read: {
+                        url: "/Vehicle/FilterType",
+                    }
+                }
+            },
+            optionLabel: "--Select Value--"
         });
     }
 </script>

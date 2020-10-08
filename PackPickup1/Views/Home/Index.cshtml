@@ -2,51 +2,57 @@
     ViewBag.Title = "Home Page";
 }
 
-<!---Jumbotron -->
-<div class="jumbotron">
-    <div class="container-fluid txt-center padding">
-        <div class="row">
-            <div class="col col-6 col-sm-6 ">
-                <img src="~/Images/Logo.jpg" />
-            </div>
-            <div class="col col-6 col-sm-6 ">
-                <img src="~/Images/Pack Pickup.png" />
-            </div>
-        </div>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <p>Packing and packup Service!</p>
-
-        <button  type="submit" class="btn btn-dark" onclick="location.href='@Url.Action("Login" , "Account")'" >SIGN IN  </button>
-        <button type="submit" class="btn btn-secondary" onclick="location.href='@Url.Action("SignUp", "Account")'" > SIGN UP!</button>
-
-
-    </div>
-</div>
-
-<div class="body1">
-
+    <img src="~/Images/Hero E.svg" />
     <!-- Team Card-->
     <div class="container-fluid ">
-        <div class="row">
-            <div class="col cols-6">
-                <button  type="button" class="btn btn-light"   onclick="location.href='@Url.Action("Index" , "Vehicle")'" >Any Pickup or Truck</button>
-                <button id="background-image" type="button" class="btn btn-light" onclick="location.href='@Url.Action("Index" , "Vehicle" , new { type ="1 Ton truck" })'">1 Ton truck</button>
-                <button id="background-image1" style="background-image:url(../../Images/PackPickup5.jpg)" type="button" class="btn btn-light" onclick="location.href='@Url.Action("Index" , "Vehicle" , new { type ="2 Ton truck" })'">2 Ton truck</button>
-            </div>
 
-            <div class="col cols-6">
-                <button type="button" class="btn btn-light"></button>
-                <button type="button" class="btn btn-light"></button>
-                <button type="button" class="btn btn-light"></button>
+       <img src="~/Images/Hire! Packing and Transportation services.svg"  class="Hire"/>
+
+        <div class="row">
+            <div class="col-6 col-sm-6 cols-6">
+                <a href="@Url.Action("ListView" , "Vehicle" , new { type = "1 Ton Truck" })"><img src="~/Images/1t.svg" /></a>
+            </div>
+            <div class="col-6 col-sm-6 cols-6">
+                <a href="@Url.Action("ListView" , "Vehicle" , new { type = "2 Ton Truck" })"><img src="~/Images/2ton.svg" /></a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6 col-sm-6 cols-6">
+                <a href="@Url.Action("ListView" , "Vehicle" , new { type = "2 Ton Truck" })"><img src="~/Images/rec.svg" /></a>
+            </div>
+            <div class="col-6 col-sm-6 cols-6">
+                <a href="@Url.Action("ListView" , "Vehicle" , new { type = "2 Ton Truck" })"><img src="~/Images/tt.svg" /></a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6 col-sm-6 cols-6">
+                <a href="@Url.Action("ListView" , "Vehicle" , new { type = "2 Ton Truck" })"><img src="~/Images/ref.svg" /></a>
+            </div>
+            <div class="col-6 col-sm-6 cols-6">
+                <a href="@Url.Action("ListView" , "Vehicle" , new { type = "2 Ton Truck" })"><img src="~/Images/cov.svg" /></a>
             </div>
 
         </div>
+        
+        <div class="row">
+            <div class="col-12 col-sm-12 col-12">
+                <a href="@Url.Action("ComingSoon", "Vehicle")"><img src="~/Images/OTHER.svg" /></a>
+            </div>
+        </div>
+
     </div>
     
     
-    <hr class="my-4" />
+    <hr class="line" />
     <!-- Connect -->
-    <div class="txt-center bg-light-100">
-        <h2>Free for 9 months</h2>
+
+    <div class="txt-center home">
+            <a href="@Url.Action("DriverRegistration" , "Account")"><img src="~/Images/driver.svg" style="width:50px; height:auto;" /> </a>
+
     </div>
-</div>
+   
+

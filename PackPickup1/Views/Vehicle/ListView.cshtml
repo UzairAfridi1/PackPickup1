@@ -1,0 +1,379 @@
+﻿@model  PackPickup1.ViewModels.VehicleViewModel
+@{
+    ViewBag.Title = "ListView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center">ListView</h2>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title " id="exampleModalLabel"><i class="far fa-user-circle w3-margin"></i>Driver</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <input type="hidden" id="driverid" />
+                    <div class="col col-3">
+                        <img src="" class="avatar img-circle" alt="Profile Picture"
+                             style="width:100px;" id="user_img">
+                        <br />
+                    </div>
+                    <div class="col col-4 popover-body">
+                        <dl class="dl-horizontal">
+
+                            <dd>
+                                <label id="name"></label>
+                            </dd>
+
+                            <dd>
+                                <label id="email"></label>
+                            </dd>
+
+                            <dd>
+                                <label id="phone"></label>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="col col-4">
+
+                        <dl class="dl-horizontal ">
+                            <div class="row">
+                                <div class="col col-6"
+                            <dt>
+                                <b>Country:</b>
+                            </dt>
+                                </div>
+                                <div class="col col-6">
+                                    <dd>
+                                        <label id="country"></label>
+                                    </dd>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-6"
+                                <dt>
+                                    <b>State :</b>
+                                </dt>
+                                    </div>
+                                <div class="col col-6">
+                                    <dd>
+                                        <label id="state"></label>
+                                    </dd>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-6">
+                                    <dt>
+                                        <b>City :</b>
+                                    </dt>
+                                </div>
+                                <div class="col col-6">
+                                    <dd>
+                                        <label id="city"></label>
+                                    </dd>
+                                </div>
+                            </div>
+                        </dl>
+
+                    </div>
+                </div>
+                <br />
+                <h3>Rating and Comments</h3>
+
+                <br />
+                <div class="demo-section k-content wide">
+                    <div id="CommentView"></div>
+                </div>
+                <script type="text/x-kendo-tmpl" id="Comment">
+                    <div class="comment">
+                        @*<img src="../Images/#:Photo.Image#" alt="#: Name # image" />*@
+                        @*<h2>#:Name#</h2>*@
+                        <p>#:Comment#</p>
+                    </div>
+                </script>
+                <br />
+               <div class="container-type">
+                <div class="rateit" data-rateit-mode="font" id="rate">
+                </div>
+
+                <br />
+
+                <div class="mb-3">
+                    <label for="validationTextarea">Comment</label>
+                    <textarea class="form-control is-invalid" id="comment" placeholder="Please comment here!" required></textarea>
+                    <div class="invalid-feedback">
+                        Please enter a message in the textarea.
+                    </div>
+                    <button class="btn btn-outline-dark float-right" type="submit" onclick="submitbtn()">Comment</button>
+                </div>
+               </div>
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <a href="" id="whatsapp" class="mr-auto" target="_blank"><span class="fab fa-whatsapp-square fa-2x"></span></a>
+                <button id="whtsapp" type="button" class="btn btn-success btn-sm">Call</button>
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="example">
+
+    <div class="demo-section k-content wide">
+        <div id="listView"></div>
+        <div id="pager" class="k-pager-wrap"> </div>
+    </div>
+
+    <hr class="line" />
+    <!-- Connect -->
+
+    <div class="txt-center home">
+        <a href="@Url.Action("Index" , "Home")">  <span class="fas fa-home fa-2x"></span></a>
+       
+    </div>
+
+    <script type="text/x-kendo-tmpl" id="template">
+        <div class="product">
+            <img src="../Images/#:Photo.Image#" alt="#: VehicleName # image" />
+            <h2>#:VehicleName#</h2>
+            <h3>#:Type#</h3>
+            <h3>#:Size#</h3>
+            <h3>#:Capacity#</h3>
+            <h3>#:Weight# Weight</h3>
+        </div>
+    </script>
+
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script>
+        var dataSource;
+        $(document).ready(function () {
+            $(function () {
+                debugger;
+                var type = '@ViewBag.type';
+                $.ajax({
+                    type: "GET",
+                    url: "/Vehicle/getVehicle",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: {
+                        type: type
+                    },
+                    success: function (responseData) {
+                        dataSource = new kendo.data.DataSource({
+                            data: responseData,
+                            pageSize: 15
+                        });
+
+                        $("#pager").kendoPager({
+                            dataSource: dataSource
+                        });
+
+                        $("#listView").kendoListView({
+                            dataSource: dataSource,
+                            selectable: "multiple",
+                            change: onChange,
+                            template: kendo.template($("#template").html())
+                        });
+                    },
+
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+
+                });
+
+                function onChange() {
+                    debugger;
+                    var data = dataSource.view(),
+                        selected = $.map(this.select(), function (item) {
+                            return data[$(item).index()].DriverId;
+                        });
+                    var driverid = selected;
+                    $.ajax({
+                        type: "POST",
+                        url: "/Vehicle/GetDriver",
+                        //contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: {
+                            id: driverid
+                        },
+                        success: function (driver) {
+                            debugger;
+                            $("#user_img").attr("src", "/Images/"+driver.Image+"");
+                            document.getElementById('name').innerHTML = driver.User.Name;
+                            document.getElementById('email').innerHTML = driver.User.Email;
+                            document.getElementById('phone').innerHTML = driver.User.MobileNo;
+                            document.getElementById('country').innerHTML = driver.Country.Name;
+                            document.getElementById('state').innerHTML = driver.State.Name;
+                            document.getElementById('city').innerHTML = driver.City.Name;
+                            $('#driverid').val(driver.DriverId);
+
+                            $('#exampleModal').modal('show')
+                        }
+
+
+
+                    })
+
+                    debugger;
+                    $.ajax({
+                        url: "/Review/GetReviews",
+                        type: "GET",
+                        data: {
+                            id: $("#driverid").val()
+                        },
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (responseData) {
+                            dataSource = new kendo.data.DataSource({
+                                data: responseData,
+
+                            });
+
+                            $("#CommentView").kendoListView({
+                                dataSource: dataSource,
+                                selectable: "multiple",
+                                template: kendo.template($("#Comment").html())
+                            });
+                        }
+                    })
+
+
+                }
+            });
+
+        });
+
+        function submitbtn() {
+            debugger;
+            var rating = $('#rate').rateit('value');
+            var comment = $("#comment").val();
+            var driverid = $("#driverid").val();
+            var obj = {
+                Comment : comment,
+                RateIt : rating,
+                DriverId : driverid
+            }
+            $.ajax({
+                url: "/Review/SaveReview",
+                type: "POST",
+                data: JSON.stringify(obj),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+
+                }
+            })
+
+        }
+
+
+        $("#whatsapp").click(function () {
+            var phone = document.getElementById('phone').innerHTML;
+            var strg = "92" + phone.substring(1, 11);
+            $("#whatsapp").attr("href", "//api.whatsapp.com/send?phone=" + strg + "");
+        });
+
+
+        $("#whtsapp").click(function () {
+            var phone = document.getElementById('phone').innerHTML;
+            var strg = "92" + phone.substring(1, 11);
+            $("#whtsapp").attr("href", "whatsapp://send?phone=" + strg + "");
+        });
+
+
+    </script>
+</div>
+
+<style>
+    .product {
+        float: left;
+        width: 240px;
+        height: 120px;
+        margin: 0;
+        padding: 5px;
+        cursor: pointer;
+    }
+    .comment {
+        float: left;
+        width: 240px;
+        margin: 0;
+        cursor: pointer;
+        padding: 2px;
+    }
+    #whtsapp {
+        width: 60px;
+        background-color: #4ac959;
+    }
+
+    .container-type {
+        border: inset;
+        border-style: inset;
+        height: 200px;
+        background-color: lightgray;
+    }
+    .product img {
+        float: left;
+        width: 110px;
+        height: 110px;
+    }
+    .fa-whatsapp-square {
+        color: #4ac959;
+        background-color: white;
+    }
+    .product h2 {
+        margin: 0;
+        padding: 10px 0 10px 10px;
+        max-width: 100px;
+        overflow: hidden;
+        line-height: 1.1em;
+        font-size: .9em;
+        font-weight: normal;
+        text-transform: uppercase;
+        color: #999;
+    }
+
+.product h3 {
+            margin: 0;
+            padding: 5px 0 0 10px;
+            max-width: 100px;
+            overflow: hidden;
+            line-height: 1.1em;
+            font-size: .6em;
+            font-weight: normal;
+            text-transform: uppercase;
+            color: #999;
+}
+
+    .k-pager-wrap {
+        border-top: 0;
+    }
+
+    .demo-section .k-listview:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+</style>

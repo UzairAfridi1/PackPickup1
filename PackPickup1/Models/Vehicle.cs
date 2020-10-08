@@ -9,6 +9,8 @@ namespace PackPickup1.Models
     {
         public int VehicleId { get; set; }
 
+        public string VehicleName { get; set; }
+
         public string Type { get; set; }
 
         public string Capacity { get; set; }

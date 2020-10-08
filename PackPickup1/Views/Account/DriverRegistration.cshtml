@@ -1,0 +1,32 @@
+﻿@model PackPickup1.Models.User
+@{
+    ViewBag.Title = "DriverRegistration";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<video autoplay muted loop id="myVideo">
+        <source src="~/Videos/PackPickup.mp4" type="video/mp4">
+</video>
+<h1 class="head">Registration </h1>
+<div class="clear-loading spinner">
+    <span></span>
+</div>
+<div class="w3ls-login box box--big">
+    <!-- form starts here -->
+    @using (Html.BeginForm("Registration", "Account"))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="agile-field-txt">
+            @Html.TextBoxFor(u => u.Name, new { placeholder = "Name" })
+            @Html.ValidationMessageFor(u => u.Name)
+        </div>
+        <div class="agile-field-txt form-group">
+            @Html.PasswordFor(u => u.MobileNo, new { placeholder = "Contact" })
+            @Html.ValidationMessageFor(u => u.MobileNo)
+        </div>
+       
+        <input type="submit" value="Sign Up">
+    }
+</div>
+

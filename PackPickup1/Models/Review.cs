@@ -11,7 +11,7 @@ namespace PackPickup1.Models
 
         public string Comment { get; set; }
 
-        public string Stars { get; set; }
+        public int RateIt { get; set; }
 
         public string CommentType { get; set; }
 

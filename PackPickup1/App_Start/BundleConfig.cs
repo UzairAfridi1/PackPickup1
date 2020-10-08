@@ -10,6 +10,8 @@ namespace PackPickup1
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery.min.js",
+                        "~/Scripts/jquery-ui.js",
+                        "~/Scripts/jquery.rateit.js",
                         "~/Scripts/Kendo.all.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -27,6 +29,8 @@ namespace PackPickup1
              "~/Content/bootstrap.css",
              "~/Content/fontawesome-all.css",
              "~/Content/Login.css",
+             "~/Content/rateit.css",
+             "~/Content/jquery-ui.css",
              "~/Content/NavbarandFooter.css",
              "~/Content/kendo.default-v2.min.css"));
         }

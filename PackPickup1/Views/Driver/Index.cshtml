@@ -33,7 +33,6 @@
 </div>
 
 <script src="~/Scripts/jquery.min.js"></script>
-<script src="~/Scripts/moment.js"></script>
 <script>
     $(document).ready(function () {
         KendoGridDataLoading();
@@ -68,7 +67,7 @@
 
                     parameterMap: function (options, operation) {
                         if (operation == "update") {
-                            options.DateOfBirth = kendo.toString(options.DateOfBirth, "MM/dd/yyyy");
+                            options.DateOfBirth = kendo.toString(options.DateOfBirth, "yyyy/MM/dd");
                             return options;
                         }
                     }
@@ -78,15 +77,18 @@
                 schema: {
                     model: {
                         id: "DriverId",
-                        fields: { 
-                                DriverId: { editable: false, nullable: false },
-                                Nationality: { validation: { required: true } },
-                                Language: { validation: { required: true } },
-                                DateOfBirth: { type: "date", editable: true },
-                                //Discontinued: { type: "boolean" },
-                                //UnitsInStock: { type: "number", validation: { min: 0, required: true } }
+                        fields: {
+                            DriverId: { editable: false, nullable: false },
+                            User: {
+                                validation: { required: true }
+                            },
+                            Nationality: { validation: { required: true } },
+                            Language: { validation: { required: true } },
+                            DateOfBirth: { type: "date", editable: true },
+
                         }
                     }
+
                 },
 
                 pageSize: 5,
@@ -95,7 +97,19 @@
             height: 550,
             groupable: true,
             sortable: true,
-            selectable: "multiple",
+            navigatable: true,
+            resizable: true,
+            filterable: {
+                extra: false,
+                operators: {
+                    string: {
+                        startswith: "Starts with",
+                        eq: "Is equal to",
+                        neq: "Is not equal to"
+                    }
+                }
+            },
+            selectable: "row",
             batch: true,
             pageable: {
                 refresh: true,
@@ -106,24 +120,30 @@
             toolbar: ["create"],
 
             columns: [
-            {
-                template: "<div class='customer-photo'" +
-                    "style='background-image:url(../Images/#:Image#);'></div>" +
-                    "<div class='customer-name'>#: User.Name  #</div>",
-                field: "User.Name",
-                title: "Driver Name",
-                width: 240
-            }, {
-                field: "Nationality",
+                {
+                    template: "<div class='customer-photo'" +
+                        "style='background-image:url(../Images/#:Image#);'></div>" +
+                        "<div class='customer-name'>#: User.Name  #</div>",
+                    field: "User",
+                    editor: true,
+                    title: "Driver Name",
+                    width: 240
+                }, {
+                    field: "Nationality",
                     title: "Nationality",
-            }, {
-                field: "Language",
-                title: "Language"
+                    filterable: true
+                }, {
+                    field: "Language",
+                    title: "Language",
+                    filterable: true
                 },
                 {
                     title: "DateOfBirth",
                     field: "DateOfBirth",
-                    format: "{0:g}"
+                    format: "{0:dd/MM/yyyy}",
+                    filterable: {
+                        ui: "datetimepicker"
+                    }
                 },
                 { command: ["edit", "destroy"], title: "Actions", width: "200px" }
             ],
